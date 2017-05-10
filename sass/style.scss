@@ -1,0 +1,272 @@
+@mixin transitionEaseOutExpo($type, $time) {
+
+-webkit-transition: $type $time cubic-bezier(0.000, 0.655, 0.355, 1.000); 
+   -moz-transition: $type $time cubic-bezier(0.000, 0.655, 0.355, 1.000); 
+     -o-transition: $type $time cubic-bezier(0.000, 0.655, 0.355, 1.000); 
+        transition: $type $time cubic-bezier(0.000, 0.655, 0.355, 1.000); /* custom */
+
+-webkit-transition-timing-function: cubic-bezier(0.000, 0.655, 0.355, 1.000); 
+   -moz-transition-timing-function: cubic-bezier(0.000, 0.655, 0.355, 1.000); 
+     -o-transition-timing-function: cubic-bezier(0.000, 0.655, 0.355, 1.000); 
+        transition-timing-function: cubic-bezier(0.000, 0.655, 0.355, 1.000); /* custom */
+}
+
+@mixin rotate($degrees) {
+	-webkit-transform: rotate($degrees);
+	-ms-transform: rotate($degrees);
+	-o-transform: rotate($degrees);
+	transform: rotate($degrees);
+}
+
+$mobile: 767px;
+$tablet: 991px;
+
+html,
+body {
+	height: 100%;
+	font-family: 'Roboto', sans-serif;
+	color: #252525;
+}
+
+a {
+	color: #252525;
+	@include transitionEaseOutExpo(all, 0.3s);
+	padding-right: 5px;
+
+	&:hover {
+		color: #00b4cb;
+		text-decoration: none;
+	}
+}
+
+.d-flex {
+	display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.align-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.flex-centerY-centerX {
+	justify-content: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+body {
+	background-color: #f7f7f7;
+}
+
+.page-wrapper {
+	height: 100%;
+	display: table;
+	overflow: hidden;
+
+	.page-inner {
+		display: table-cell;
+		vertical-align: middle;
+	}	
+}
+
+.el-wrapper {
+	width: 360px;
+	margin: 30px auto; 
+
+  @media (max-width: $tablet) {
+    width: 345px;
+  }
+
+  @media (max-width: $mobile) {
+    width: 290px;
+  }
+	
+	&:hover {
+		.shoe-box {
+			left: 135px;
+			bottom: 40px;
+			@include rotate(20deg);
+		}
+
+		.blur {
+			width: 170%;
+			-webkit-filter: blur(50px) opacity(1);
+			-o-filter: blur(50px) opacity(1);
+			filter: blur(50px) opacity(1);
+			@include rotate(5deg);
+		}
+
+		.shoe-logo {
+			margin-top: 55px;
+			margin-left: 30px;
+		}
+
+		.arrow {
+			opacity: 1;
+			margin-left: 13px;
+		}
+	}
+
+	&.leave {
+		.arrow {
+			opacity: 0;
+			margin-left: 26px;
+		}
+	} 
+}
+
+
+.box-up {
+	height: 155px;
+	position: relative;
+
+	.shoe-logo {
+		margin: 18px;
+		position: relative;
+		z-index: 3;
+		@include transitionEaseOutExpo(all, 700ms); 
+	}
+
+	.shoe-box {
+		position: absolute;
+		left: 70px;
+		bottom: 0;
+		@include transitionEaseOutExpo(all, 600ms);
+		z-index: 10;
+	}
+
+	.shoe-img {
+		max-width: 255px;
+		position: relative;
+		z-index: 1;
+
+		@media (max-width: $tablet) {
+	    max-width: 240px;
+	  }
+
+	  @media (max-width: $mobile) {
+	    max-width: 190px;
+	  }
+	}
+
+	.shadow {
+		max-width: 255px;
+		position: absolute;
+		left: -30px;
+		top: 22px;
+		filter: blur(10px) brightness(0) opacity(0.2);
+
+		@media (max-width: $tablet) {
+	    max-width: 240px;
+	  }
+
+	  @media (max-width: $mobile) {
+	    max-width: 190px;
+	  }
+	}
+}
+
+.blur-img-box {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+
+	.inner-box {
+		width: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		-webkit-filter: blur(0);
+		-o-filter: blur(0);
+		filter: blur(0);
+	}
+
+	.blur {
+		width: 134%;
+		max-width: none;
+		left: -50px;
+		position: absolute;
+		top: 0;
+		height: 155px;
+		z-index: 0;
+		@include transitionEaseOutExpo(all, 0.5s);
+		-webkit-filter: blur(50px) opacity(0.6);
+		-o-filter: blur(50px) opacity(0.6);
+		filter: blur(50px) opacity(0.6);
+	}
+}
+
+.box-down {
+	padding: 25px 35px;
+	position: relative;
+	z-index: 11;
+	background: #fff;
+	@extend .d-flex;
+	-webkit-align-content: space-between;
+	-moz-align-content: space-between;
+	-ms-align-content: space-between;
+	-o-align-content: space-between;
+	align-content: space-between;
+	-webkit-flex-flow: row wrap;
+	-moz-flex-flow: row wrap;
+	-ms-flex-flow: row wrap;
+	-o-flex-flow: row wrap;
+	flex-flow: row wrap;
+
+	.shoe-model {
+		margin-bottom: 40px;
+		font-size: 24px;
+		font-weight: 300;
+		letter-spacing: 1px;
+		-webkit-flex: 0 1 100%;
+		-moz-flex: 0 1 100%;
+		-ms-flex: 0 1 100%;
+		-o-flex: 0 1 100%;
+		flex: 0 1 100%;
+
+		@media (max-width: $tablet) {
+	    margin-bottom: 30px;
+	  }
+
+	  @media (max-width: $mobile) {
+	    margin-bottom: 20px;
+	  }
+	}
+
+	.arrow {
+		@include transitionEaseOutExpo(all, 0.25s);
+		width: 24px;
+		height: 23px;
+		margin-left: 5px;
+		margin-bottom: -6px;
+		display: inline-block;
+		opacity: 0;
+		background: url('../images/arrow.png') center center no-repeat;
+	}
+
+	.buy-btn {
+		font-size: 16px;
+		font-weight: 700;
+
+		&:hover {
+			.price {
+				color: #252525;
+			}
+		}
+
+		.price {
+			font-size: 14px;	
+			font-weight: 400;
+		}
+	}
+}
